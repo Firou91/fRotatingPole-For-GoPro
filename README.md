@@ -56,7 +56,9 @@ const float maxSpeedY = 1.0;
 - 
 - 
 
+# Flowchart
 
+Here is the flowchart at the following link: [Click here](https://lucid.app/lucidchart/89dfd381-6f20-4bba-bf32-a55033619b30/edit?viewport_loc=-11%2C-11%2C2219%2C1065%2C0_0&invitationId=inv_87d8bdc8-cb0e-48af-9632-bbdfbf632f1d)
 
 <table><tr><td><h3 align='center'>Legal Notices</h2></tr></td>
 <tr><td>
