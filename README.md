@@ -1,4 +1,4 @@
-<div align='center'><img src='https://media.discordapp.net/attachments/1083813324422135859/1108096402019602463/IMG_0424_2.jpg?width=605&height=605'/></div>
+<div align='center'><img style="height: 220px; margin: 0 auto" src='https://media.discordapp.net/attachments/1083813324422135859/1108096402019602463/IMG_0424_2.jpg?width=605&height=605'/></div>
 
 # Config
 
