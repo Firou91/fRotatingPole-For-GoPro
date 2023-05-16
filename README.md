@@ -1,4 +1,4 @@
-<div align='center'><img src='[https://user-images.githubusercontent.com/65407488/147992899-93998c0a-75fb-4055-8c06-8da8c49342d6.png](https://media.discordapp.net/attachments/1083813324422135859/1108096402019602463/IMG_0424_2.jpg?width=605&height=605)'/></div>
+<div align='center'><img src='https://media.discordapp.net/attachments/1083813324422135859/1108096402019602463/IMG_0424_2.jpg?width=605&height=605'/></div>
 
 # Config
 
