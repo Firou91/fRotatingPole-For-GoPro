@@ -12,37 +12,37 @@
 #include "config.h"
 
 void setup() {
-  pinMode(PIN_VITESSE_MOTEUR_1, OUTPUT); // Broche vitesseMotA configurée en sortie
-  pinMode(PIN_SENS_MOTEUR_1, OUTPUT); // Broche sensMotA configurée en sortie
-  digitalWrite(PIN_SENS_MOTEUR_1, LOW); // À l'arrêt
-  analogWrite(PIN_VITESSE_MOTEUR_1, 0);
+  pinMode(PIN_VITESSE_MOTOR_X, OUTPUT); // Broche vitesseMotA configurée en sortie
+  pinMode(PIN_SENS_MOTOR_X, OUTPUT); // Broche sensMotA configurée en sortie
+  digitalWrite(PIN_SENS_MOTOR_X, LOW); // À l'arrêt
+  analogWrite(PIN_VITESSE_MOTOR_X, 0);
 
-  pinMode(PIN_VITESSE_MOTEUR_2, OUTPUT);
-  pinMode(PIN_SENS_MOTEUR_2, OUTPUT);
-  digitalWrite(PIN_SENS_MOTEUR_2, LOW); // Arrêt du moteur 2
-  analogWrite(PIN_VITESSE_MOTEUR_2, 0);
+  pinMode(PIN_VITESSE_MOTOR_Y, OUTPUT);
+  pinMode(PIN_SENS_MOTOR_Y, OUTPUT);
+  digitalWrite(PIN_SENS_MOTOR_Y, LOW); // Arrêt du moteur 2
+  analogWrite(PIN_VITESSE_MOTOR_Y, 0);
 
-  pinMode(PIN_BOUTON_SENS_1_MOTOR_1, INPUT_PULLUP); // Broche du bouton de sens 1 configurée en entrée avec une résistance de pull-up interne activée
-  pinMode(PIN_BOUTON_SENS_2_MOTOR_1, INPUT_PULLUP); // Broche du bouton de sens 2 configurée en entrée avec une résistance de pull-up interne activée
-  pinMode(PIN_BOUTON_SENS_1_MOTOR_2, INPUT_PULLUP); // Broche du bouton de sens 1 configurée en entrée avec une résistance de pull-up interne activée
-  pinMode(PIN_BOUTON_SENS_2_MOTOR_2, INPUT_PULLUP); // Broche du bouton de sens 2 configurée en entrée avec une résistance de pull-up interne activée
+  pinMode(PIN_BOUTON_SENS_1_MOTOR_X, INPUT_PULLUP); // Broche du bouton de sens 1 configurée en entrée avec une résistance de pull-up interne activée
+  pinMode(PIN_BOUTON_SENS_2_MOTOR_X, INPUT_PULLUP); // Broche du bouton de sens 2 configurée en entrée avec une résistance de pull-up interne activée
+  pinMode(PIN_BOUTON_SENS_1_MOTOR_Y, INPUT_PULLUP); // Broche du bouton de sens 1 configurée en entrée avec une résistance de pull-up interne activée
+  pinMode(PIN_BOUTON_SENS_2_MOTOR_Y, INPUT_PULLUP); // Broche du bouton de sens 2 configurée en entrée avec une résistance de pull-up interne activée
 
   // Démarre la communication série
   Serial.begin(9600);
 }
 
 void loop() {
-  int sensRotaMotor1 = rotaDirectionMotor1();
-  int sensRotaMotor2 = rotaDirectionMotor2();
+  int sensRotaMotorX = rotaDirectionMotorX();
+  int sensRotaMotorY = rotaDirectionMotorY();
 
-  controlMotor1(sensRotaMotor1);
-  controlMotor2(sensRotaMotor2);
+  controlMotorX(sensRotaMotorX);
+  controlMotorY(sensRotaMotorY);
   // Autres actions à effectuer dans la boucle principale
 }
 
-int rotaDirectionMotor1() {
-  int etatBoutonSens1 = digitalRead(PIN_BOUTON_SENS_1_MOTOR_1);
-  int etatBoutonSens2 = digitalRead(PIN_BOUTON_SENS_2_MOTOR_1);
+int rotaDirectionMotorX() {
+  int etatBoutonSens1 = digitalRead(PIN_BOUTON_SENS_1_MOTOR_X);
+  int etatBoutonSens2 = digitalRead(PIN_BOUTON_SENS_2_MOTOR_X);
 
   if (etatBoutonSens1 == LOW) {
     return 1; // Sens 1
@@ -52,9 +52,9 @@ int rotaDirectionMotor1() {
 
   return 0; // Aucun sens sélectionné
 }
-int rotaDirectionMotor2() {
-  int etatBoutonSens1 = digitalRead(PIN_BOUTON_SENS_1_MOTOR_2);
-  int etatBoutonSens2 = digitalRead(PIN_BOUTON_SENS_2_MOTOR_2);
+int rotaDirectionMotorY() {
+  int etatBoutonSens1 = digitalRead(PIN_BOUTON_SENS_1_MOTOR_Y);
+  int etatBoutonSens2 = digitalRead(PIN_BOUTON_SENS_2_MOTOR_Y);
 
   if (etatBoutonSens1 == LOW) {
     return 1; // Sens 1
@@ -65,41 +65,41 @@ int rotaDirectionMotor2() {
   return 0; // Aucun sens sélectionné
 }
 
-void controlMotor1(int sensRotaMotor1) {
-  switch (sensRotaMotor1) {
+void controlMotorX(int sensRotaMotorX) {
+  switch (sensRotaMotorX) {
     case 1:
       Serial.println("Moteur A sens 1 ");
-      digitalWrite(PIN_SENS_MOTEUR_1, LOW); // Sens 1
-      analogWrite(PIN_VITESSE_MOTEUR_1, 128); // Vitesse maximale à faire varier entre 0 et 255
+      digitalWrite(PIN_SENS_MOTOR_X, LOW); // Sens 1
+      analogWrite(PIN_VITESSE_MOTOR_X, 255); // Vitesse maximale à faire varier entre 0 et 255
       break;
     case 2:
       Serial.println("Moteur A sens 2 ");
-      digitalWrite(PIN_SENS_MOTEUR_1, HIGH); // Sens 2
-      analogWrite(PIN_VITESSE_MOTEUR_1, 255); // Vitesse maximale
+      digitalWrite(PIN_SENS_MOTOR_X, HIGH); // Sens 2
+      analogWrite(PIN_VITESSE_MOTOR_X, 255); // Vitesse maximale
       break;
     default:
-      digitalWrite(PIN_SENS_MOTEUR_1, LOW); // Aucun sens sélectionné, arrêt du moteur
-      analogWrite(PIN_VITESSE_MOTEUR_1, 0); // Vitesse nulle
+      digitalWrite(PIN_SENS_MOTOR_X, LOW); // Aucun sens sélectionné, arrêt du moteur
+      analogWrite(PIN_VITESSE_MOTOR_X, 0); // Vitesse nulle
       break;
   }
 }
 
-void controlMotor2(int sensRotaMotor2) {
+void controlMotorY(int sensRotaMotorY) {
   
-  switch (sensRotaMotor2) {
+  switch (sensRotaMotorY) {
     case 1:
       Serial.println("Moteur B sens 1 ");
-      digitalWrite(PIN_SENS_MOTEUR_2, LOW); // Sens 1
-      analogWrite(PIN_VITESSE_MOTEUR_2, 255); // Vitesse maximale à faire varier entre 0 et 255
+      digitalWrite(PIN_SENS_MOTOR_Y, LOW); // Sens 1
+      analogWrite(PIN_VITESSE_MOTOR_Y, 255); // Vitesse maximale à faire varier entre 0 et 255
       break;
     case 2:
       Serial.println("Moteur B sens 2 ");
-      digitalWrite(PIN_SENS_MOTEUR_2, HIGH); // Sens 2
-      analogWrite(PIN_VITESSE_MOTEUR_2, 255); // Vitesse maximale
+      digitalWrite(PIN_SENS_MOTOR_Y, HIGH); // Sens 2
+      analogWrite(PIN_VITESSE_MOTOR_Y, 255); // Vitesse maximale
       break;
     default:
-      digitalWrite(PIN_SENS_MOTEUR_2, LOW); // Aucun sens sélectionné, arrêt du moteur
-      analogWrite(PIN_VITESSE_MOTEUR_2, 0); // Vitesse nulle
+      digitalWrite(PIN_SENS_MOTOR_Y, LOW); // Aucun sens sélectionné, arrêt du moteur
+      analogWrite(PIN_VITESSE_MOTOR_Y, 0); // Vitesse nulle
       break;
   }
 }
