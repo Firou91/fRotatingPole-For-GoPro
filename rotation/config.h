@@ -1,45 +1,9 @@
-// ░█████╗░░█████╗░███╗░░██╗███████╗██╗░██████╗░██╗░░░██╗██████╗░░█████╗░████████╗██╗░█████╗░███╗░░██╗
-// ██╔══██╗██╔══██╗████╗░██║██╔════╝██║██╔════╝░██║░░░██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔══██╗████╗░██║
-// ██║░░╚═╝██║░░██║██╔██╗██║█████╗░░██║██║░░██╗░██║░░░██║██████╔╝███████║░░░██║░░░██║██║░░██║██╔██╗██║
-// ██║░░██╗██║░░██║██║╚████║██╔══╝░░██║██║░░╚██╗██║░░░██║██╔══██╗██╔══██║░░░██║░░░██║██║░░██║██║╚████║
-// ╚█████╔╝╚█████╔╝██║░╚███║██║░░░░░██║╚██████╔╝╚██████╔╝██║░░██║██║░░██║░░░██║░░░██║╚█████╔╝██║░╚███║
-// ░╚════╝░░╚════╝░╚═╝░░╚══╝╚═╝░░░░░╚═╝░╚═════╝░░╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝
-// Configuration des broches et des paramètres
+const int PIN_VITESSE_MOTEUR_1 = 3; // Constante pour la broche vitesse D3
+const int PIN_SENS_MOTEUR_1 = 12; // Constante pour la direction / sens broche D12
+const int PIN_VITESSE_MOTEUR_2 = 11; // Constante pour la broche vitesse moteur 2 ()
+const int PIN_SENS_MOTEUR_2 = 13; // Constante pour la broche sens moteur 2 ()
 
-// Nombre de boutons
-#define NUM_BUTTONS 2
-
-// Délai anti-rebond pour les boutons (en millisecondes)
-#define BUTTON_DEBOUNCE_DELAY 50
-
-// Valeur minimale et maximale des lectures des boutons analogiques
-#define MIN_VAL 0
-#define MAX_VAL 1023
-
-// Broches des boutons
-const int buttonPins[NUM_BUTTONS] = {A0, A1};
-
-// Broche de la LED
-const int ledPin = 13;
-
-// États des boutons
-int buttonState[NUM_BUTTONS] = {HIGH, HIGH};
-int lastButtonState[NUM_BUTTONS] = {HIGH, HIGH};
-unsigned long lastDebounceTime[NUM_BUTTONS] = {0, 0};
-
-// Priorité de rotation (0 : axe X, 1 : axe Y)
-int rotationPriority = 0;
-
-// Broches de contrôle moteur pour les axes X et Y
-const int motorXPin1 = 2;
-const int motorXPin2 = 3;
-const int motorYPin1 = 4;
-const int motorYPin2 = 5;
-
-// Variables de vitesse des moteurs
-float speedX = 0;
-float speedY = 0;
-
-// Vitesse maximale de rotation (en rotations par minute)
-const float maxSpeedX = 1.0;
-const float maxSpeedY = 1.0;
+const int PIN_BOUTON_SENS_1_MOTOR_1 = 7; // Broche pour le bouton de sens 1 du Grove Dual Button
+const int PIN_BOUTON_SENS_2_MOTOR_1 = 8; // Broche pour le bouton de sens 2 du Grove Dual Button
+const int PIN_BOUTON_SENS_1_MOTOR_2 = 5; // Broche pour le bouton de sens 1 du Grove Dual Button
+const int PIN_BOUTON_SENS_2_MOTOR_2 = 6; // Broche pour le bouton de sens 2 du Grove Dual Button
