@@ -68,18 +68,21 @@ int rotaDirectionMotorY() {
 void controlMotorX(int sensRotaMotorX) {
   switch (sensRotaMotorX) {
     case 1:
-      Serial.println("Moteur A sens 1 ");
+      Serial.println("Moteur X sens 1 ");
       digitalWrite(PIN_SENS_MOTOR_X, LOW); // Sens 1
       analogWrite(PIN_VITESSE_MOTOR_X, 255); // Vitesse maximale à faire varier entre 0 et 255
+      Serial.println("Le moteur X tourne dans le sens 1")
       break;
     case 2:
-      Serial.println("Moteur A sens 2 ");
+      Serial.println("Moteur X sens 2 ");
       digitalWrite(PIN_SENS_MOTOR_X, HIGH); // Sens 2
       analogWrite(PIN_VITESSE_MOTOR_X, 255); // Vitesse maximale
+      Serial.println("Le moteur X tourne dans le sens 2")
       break;
     default:
       digitalWrite(PIN_SENS_MOTOR_X, LOW); // Aucun sens sélectionné, arrêt du moteur
       analogWrite(PIN_VITESSE_MOTOR_X, 0); // Vitesse nulle
+      Serial.println("Le moteur X est à l'arrêt")
       break;
   }
 }
@@ -91,15 +94,18 @@ void controlMotorY(int sensRotaMotorY) {
       Serial.println("Moteur B sens 1 ");
       digitalWrite(PIN_SENS_MOTOR_Y, LOW); // Sens 1
       analogWrite(PIN_VITESSE_MOTOR_Y, 255); // Vitesse maximale à faire varier entre 0 et 255
+      Serial.println("Le moteur Y tourne dans le sens 1")
       break;
     case 2:
       Serial.println("Moteur B sens 2 ");
       digitalWrite(PIN_SENS_MOTOR_Y, HIGH); // Sens 2
       analogWrite(PIN_VITESSE_MOTOR_Y, 255); // Vitesse maximale
+      Serial.println("Le moteur Y tourne dans le sens 2")
       break;
     default:
       digitalWrite(PIN_SENS_MOTOR_Y, LOW); // Aucun sens sélectionné, arrêt du moteur
       analogWrite(PIN_VITESSE_MOTOR_Y, 0); // Vitesse nulle
+      Serial.println("Le moteur Y est à l'arrêt")
       break;
   }
 }
