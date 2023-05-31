@@ -5,56 +5,60 @@
 Refer to the 'config.h' setting your config.
 Content:
 ```h
-// Number of buttons
-#define NUM_BUTTONS 2
+// Broches A et B
+const int PIN_VITESSE_MOTOR_X = 11;
+const int PIN_SENS_MOTOR_X = 13;
+const int PIN_VITESSE_MOTOR_Y = 3;
+const int PIN_SENS_MOTOR_Y = 12;
+// Boutons
+const int PIN_BOUTON_SENS_1_MOTOR_X = 8; // Broche pour le bouton de sens 1 du Grove Dual Button
+const int PIN_BOUTON_SENS_2_MOTOR_X = 7; // Broche pour le bouton de sens 2 du Grove Dual Button
+const int PIN_BOUTON_SENS_1_MOTOR_Y = 5; // Broche pour le bouton de sens 1 du Grove Dual Button
+const int PIN_BOUTON_SENS_2_MOTOR_Y = 6; // Broche pour le bouton de sens 2 du Grove Dual Button
 
-// Anti-bounce delay for buttons (in milliseconds)Délai anti-rebond pour les boutons (en millisecondes)
-#define BUTTON_DEBOUNCE_DELAY 50
 
-// Minimum and maximum value of the readings of the analog buttons
-#define MIN_VAL 0
-#define MAX_VAL 1023
+// EN TEST
 
-// Button pins
-const int buttonPins[NUM_BUTTONS] = {A0, A1};
+// Vitesse maximale de rotation (en rotations par minute)
+const float maxSpeedX = 1.0; // Vitesse maximale de rotation axe X (You can change this value)
+const float maxSpeedY = 1.0; // Vitesse maximale de rotation axe Y (You can change this value)
+// Variables de vitesse des moteurs
+int speedMotors = 300; // Vitesse des moteurs (c.f fiche technique moteur)
+int RPM_MOTOR_X = (speedMotors / 255) * maxSpeedX; // Constante pour la vitesse moteur 1 (DO NOT TOUCH)
+int RPM_MOTOR_Y = (speedMotors / 255) * maxSpeedY; // Constante pour la vitesse moteur 2 (DO NOT TOUCH)
 
-// LED pin
-const int ledPin = 13;
+// Angles de rotation
+const float DEFAULT_ANGLE_X = 0.0; // Angle par défaut pour le moteur X
+const float MIN_ANGLE_X = -90.0; // Angle minimal pour le moteur X
+const float MAX_ANGLE_X = 90.0; // Angle maximal pour le moteur X
+ // Angle par défaut pour le moteur Y
+const float DEFAULT_ANGLE_Y = 0.0;
+// Angle min/max pour le moteur Y
+const float MIN_ANGLE_Y = -90.0; 
+const float MAX_ANGLE_Y = 90.0;
+// Angles actuels
+float currentAngleX = DEFAULT_ANGLE_X;
+float currentAngleY = DEFAULT_ANGLE_Y;
 
-// Button states
-int buttonState[NUM_BUTTONS] = {HIGH, HIGH};
-int lastButtonState[NUM_BUTTONS] = {HIGH, HIGH};
-unsigned long lastDebounceTime[NUM_BUTTONS] = {0, 0};
-
-// Rotation priority (0: X axis, 1: Y axis)
-int rotationPriority = 0;
-
-// Motor control spindles for X and Y axes
-const int motorXPin1 = 2;
-const int motorXPin2 = 3;
-const int motorYPin1 = 4;
-const int motorYPin2 = 5;
-
-// Motor speed variables
-float speedX = 0;
-float speedY = 0;
-
-// Maximum rotation speed (in rotations per minute)
-const float maxSpeedX = 1.0;
-const float maxSpeedY = 1.0;
+// Délai maximal (en ms) pour effectuer un double-clic
+const int DOUBLE_CLIC_DELAY = 500; 
+// Temps du dernier clic
+unsigned long lastButtonClickTime = 0; 
+bool isFirstButtonClick = true;
+int rotaPriority = 1;
 ```
 
 # Features
 
 ### Configurable file
 
-- 
-- 
+- Steering angles
+- Engine speed
+- Double click motor selection
 
 ### Real-time information in the Arduino IDE terminal
 
-- 
-- 
+If you don't have all the necessary equipment but at least have the Grove Dual Buttons, you can consult the information on your actions in real time in the standard monitor.
 
 # Flowchart
 
